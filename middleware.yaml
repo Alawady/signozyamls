@@ -1,0 +1,10 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: signoz-whitelist
+  namespace: monitoring
+spec:
+  ipWhiteList:
+    sourceRange:
+      - "193.122.80.125/32"
+      - "18.135.246.126/32"
