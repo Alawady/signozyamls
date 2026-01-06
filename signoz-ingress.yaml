@@ -6,14 +6,15 @@ metadata:
 spec:
   entryPoints:
     - web
+    # - websecure  # uncomment if you also want HTTPS
   routes:
   - kind: Rule
-    match: PathPrefix(`/`)
+    match: Host(`monitoring.private.ksa-1.datixcloudiq.com`) && PathPrefix(`/`)
     middlewares:
     - name: signoz-whitelist
       namespace: monitoring
     services:
     - kind: Service
-      name: signoz
+      name: signoz-restricted
       namespace: monitoring
       port: 8080
