@@ -1,20 +1,14 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: signoz
+  name: signoz-ui
   namespace: monitoring
 spec:
   entryPoints:
     - web
-    # - websecure  # uncomment if you also want HTTPS
   routes:
-  - kind: Rule
-    match: Host(`monitoring.private.ksa-1.datixcloudiq.com`) && PathPrefix(`/`)
-    middlewares:
-    - name: signoz-whitelist
-      namespace: monitoring
-    services:
-    - kind: Service
-      name: signoz-restricted
-      namespace: monitoring
-      port: 8080
+    - match: Host(`signoz.private.ksa-1.datixcloudiq.com`) && PathPrefix(`/`)
+      kind: Rule
+      services:
+        - name: signoz-restricted
+          port: 8080
