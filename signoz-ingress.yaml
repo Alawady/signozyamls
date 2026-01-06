@@ -8,12 +8,12 @@ spec:
     - web
   routes:
   - kind: Rule
-    match: Host(`monitoring.private.ksa-1.datixcloudiq.com`) && PathPrefix(`/`)
+    match: PathPrefix(`/`)
     middlewares:
     - name: signoz-whitelist
       namespace: monitoring
     services:
     - kind: Service
-      name: signoz-internal
+      name: signoz
       namespace: monitoring
-      port: 80
+      port: 8080
